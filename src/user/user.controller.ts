@@ -14,12 +14,8 @@ getuserid(@Param('id') id:string):string{
 return `user ${id}`;
 
 }
+
 @Post('signup')
-  signup(@Body() userData: User) {
-    // your signup logic here
-    return { message: 'User signed up', userData };
-  }
-@Post('signup1')
 create(@Body() userdata:User){
     //UserService userservice=new UserService();
    const userexist=this.userService.finduser(userdata.username);
