@@ -5,6 +5,7 @@ import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserDbModule } from './user-db/user-db.module';
+import { SessionModule } from './session/session.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -18,6 +19,7 @@ import { UserDbModule } from './user-db/user-db.module';
       synchronize: true,
     }),
     UserDbModule,
+    SessionModule,
   ],
   controllers: [AppController, UserController],
   providers: [AppService, UserService],
