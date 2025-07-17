@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put,Delete } from '@nestjs/common';
 import { UserService, User } from './user.service';
 @Controller('user')
 export class UserController {
@@ -26,6 +26,23 @@ create(@Body() userdata:User){
     const user = this.userService.createuser(userdata);
     return { message: 'User signed up', user };
   }
-   
+
+
+}
+  
+@Put('update/:id')
+updateUser(
+  //id is string cause url is only string
+  @Param('id') id: string,
+  @Body() body: { username: string; password: string }
+) {
+//+id to convert from string to number
+  return this.userService.updateUser(+id, body.username, body.password);
+}
+
+@Delete('delete/:id')
+deleteuser(@Param('id') id:string){
+return this.userService.deleteUser(+id);
+
 }
 }
