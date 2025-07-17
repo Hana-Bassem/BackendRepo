@@ -8,6 +8,6 @@ import { UserDb } from '../user-db/user-db.entity';
     imports: [TypeOrmModule.forFeature([UserDb])],
   controllers: [UserDbController],
   providers: [UserDbService],
-  exports: [UserDbService],
+    exports: [UserDbService], 
 })
 export class UserDbModule {}
