@@ -8,12 +8,31 @@ constructor(
     @InjectRepository(UserDb)
     private userRepository: Repository<UserDb>,
   ) {}
-
+//create User
   async createUser(username: string, password: string): Promise<UserDb> {
     const user = this.userRepository.create({ username, password });
     //write it to DB
     return this.userRepository.save(user);
   }
 
-    
+  //update User 
+ async updatePassword(id: number, newPassword: string) {
+  return await this.userRepository.update({ id }, { password: newPassword });
+}
+async updateUsername (id:number,newusername:string){
+    return this.userRepository.update({id},{username:newusername});
+}
+
+//find user
+async findUserbyId(UserId:number){
+    return this.userRepository.findOneBy({id: UserId})
+}
+async findallUser(){
+    return this.userRepository.find()
+}
+
+//delete User
+async deleteUser(userid:number){
+    return this.userRepository.delete({id:userid})
+}
 }
