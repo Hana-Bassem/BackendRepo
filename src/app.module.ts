@@ -6,6 +6,7 @@ import { UserService } from './user/user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserDbModule } from './user-db/user-db.module';
 import { SessionModule } from './session/session.module';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -20,6 +21,7 @@ import { SessionModule } from './session/session.module';
     }),
     UserDbModule,
     SessionModule,
+    AuthModule,
   ],
   controllers: [AppController, UserController],
   providers: [AppService, UserService],

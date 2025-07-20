@@ -9,9 +9,8 @@ constructor(
     private userRepository: Repository<UserDb>,
   ) {}
 //create User
-  async createUser(username: string, password: string): Promise<UserDb> {
+  async createUser(username: string, password: string) {
     const user = this.userRepository.create({ username, password });
-    //write it to DB
     return this.userRepository.save(user);
   }
 
