@@ -30,7 +30,9 @@ async findUserbyId(UserId:number){
 async findallUser(){
     return this.userRepository.find()
 }
-
+async findByUsername(usern:string){
+    return this.userRepository.findOneBy({username:usern})
+}
 //delete User
 async deleteUser(userid:number){
     return this.userRepository.delete({id:userid})

@@ -28,7 +28,10 @@ export class UserDbController {
  getalluser(){
  return this.userDbService.findallUser();
  }
-
+ @Get('findUserbyusername')
+ getusername(@Body() body:{username :string}){
+ return this.userDbService.findByUsername(body.username);
+ }
  @Delete('deleteuser/:id')
  deleteuser(@Param ('id') id :string){
     return this.userDbService.deleteUser(+id);
