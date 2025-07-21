@@ -3,37 +3,37 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { UserDb } from './user-db.entity';
 export class UserDbService {
-constructor(
-    //repository from typeorm allow us to easily interact with the database table that matches "userDb" entity  
+  constructor(
+    //repository from typeorm allow us to easily interact with the database table that matches "userDb" entity
     @InjectRepository(UserDb)
     private userRepository: Repository<UserDb>,
   ) {}
-//create User
+  //create User
   async createUser(username: string, password: string) {
     const user = this.userRepository.create({ username, password });
     return this.userRepository.save(user);
   }
 
-  //update User 
- async updatePassword(id: number, newPassword: string) {
-  return await this.userRepository.update({ id }, { password: newPassword });
-}
-async updateUsername (id:number,newusername:string){
-    return this.userRepository.update({id},{username:newusername});
-}
+  //update User
+  async updatePassword(id: number, newPassword: string) {
+    return await this.userRepository.update({ id }, { password: newPassword });
+  }
+  async updateUsername(id: number, newusername: string) {
+    return this.userRepository.update({ id }, { username: newusername });
+  }
 
-//find user
-async findUserbyId(UserId:number){
-    return this.userRepository.findOneBy({id: UserId})
-}
-async findallUser(){
-    return this.userRepository.find()
-}
-async findByUsername(usern:string){
-    return this.userRepository.findOneBy({username:usern})
-}
-//delete User
-async deleteUser(userid:number){
-    return this.userRepository.delete({id:userid})
-}
+  //find user
+  async findUserbyId(UserId: number) {
+    return this.userRepository.findOneBy({ id: UserId });
+  }
+  async findallUser() {
+    return this.userRepository.find();
+  }
+  async findByUsername(usern: string) {
+    return this.userRepository.findOneBy({ username: usern });
+  }
+  //delete User
+  async deleteUser(userid: number) {
+    return this.userRepository.delete({ id: userid });
+  }
 }

@@ -8,8 +8,16 @@ import { UserDbModule } from './user-db/user-db.module';
 import { SessionModule } from './session/session.module';
 import { AuthModule } from './auth/auth.module';
 import { CsvController } from './csv/csv.controller';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 @Module({
   imports: [
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60000,
+        limit: 10,
+      },
+    ]),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -25,7 +33,13 @@ import { CsvController } from './csv/csv.controller';
     AuthModule,
   ],
   controllers: [AppController, UserController, CsvController],
-  providers: [AppService, UserService],
+  providers: [
+    AppService,
+    UserService,
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
 export class AppModule {}
-

@@ -10,6 +10,4 @@ export class Session {
 
   @Column()
   doctor: string;
-
-  
 }

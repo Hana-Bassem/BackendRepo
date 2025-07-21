@@ -10,6 +10,4 @@ export class UserDb {
 
   @Column()
   password: string;
-
-  
 }

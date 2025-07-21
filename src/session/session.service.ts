@@ -4,14 +4,12 @@ import { Repository } from 'typeorm';
 import { Session } from '../session/session.entity';
 @Injectable()
 export class SessionService {
-constructor(
-
+  constructor(
     @InjectRepository(Session)
     private userRepository: Repository<Session>,
   ) {}
 
-  createSession(nameSession:string,doc:string){
-    return this.userRepository.save({name:nameSession, doctor:doc});
+  createSession(nameSession: string, doc: string) {
+    return this.userRepository.save({ name: nameSession, doctor: doc });
   }
-
 }

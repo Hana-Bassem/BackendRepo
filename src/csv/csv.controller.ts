@@ -1,8 +1,16 @@
-import { Controller, Post, UploadedFile, UseInterceptors, BadRequestException } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+  UseGuards,
+} from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { parse } from 'csv-parse/sync';
+import { GeoGuard } from '../guards/geo.guard';
 
 @Controller('csv')
+@UseGuards(GeoGuard)
 export class CsvController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))

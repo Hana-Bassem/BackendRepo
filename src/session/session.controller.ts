@@ -3,9 +3,9 @@ import { SessionService } from './session.service';
 
 @Controller('session')
 export class SessionController {
-    constructor( private SessionService:SessionService){}
-    @Post('createSession')
-    createsession(@Body() body:{name:string,doctor:string}){
-        return this.SessionService.createSession(body.name,body.doctor);
-    }
+  constructor(private SessionService: SessionService) {}
+  @Post('createSession')
+  createsession(@Body() body: { name: string; doctor: string }) {
+    return this.SessionService.createSession(body.name, body.doctor);
+  }
 }
